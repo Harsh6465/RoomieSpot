@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "20249603587",
+    "project_id": "roomiespot-1a908",
+    "storage_bucket": "roomiespot-1a908.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20249603587:android:b42623fe91a3e2d22ee836",
+        "android_client_info": {
+          "package_name": "com.example.roomiespot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCu4RjyQYu66eh-iE1Pb063DBJwt1B_QZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

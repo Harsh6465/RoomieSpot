@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.roomiespot">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/app_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/app_logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.RoomieSpot">
+
+        <!-- Add SplashActivity as the launcher activity -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.RoomieSpot.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Move LoginActivity's intent-filter to SplashActivity -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+        </activity>
+
+        <!-- Rest of your activities remain the same -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".AddPropertyActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".MyPropertiesActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".SavedPropertiesActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".MessagesActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".HelpActivity"
+            android:exported="true">
+        </activity>
+
+    </application>
+</manifest>

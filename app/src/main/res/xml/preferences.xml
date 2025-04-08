@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Notifications">
+        <SwitchPreference
+            android:key="notifications_enabled"
+            android:title="Enable Notifications"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Account">
+        <Preference
+            android:key="change_password"
+            android:title="Change Password" />
+        <Preference
+            android:key="privacy_policy"
+            android:title="Privacy Policy" />
+    </PreferenceCategory>
+</PreferenceScreen>

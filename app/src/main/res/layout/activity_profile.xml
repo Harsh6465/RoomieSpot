@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <FrameLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_profile_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_person" />
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/circle_background"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_camera" />
+            </FrameLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:hint="Full Name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Phone Number">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Bio">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:inputType="textMultiLine"
+                    android:lines="4" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="I am a landlord"
+                    android:textSize="16sp" />
+                <Switch
+                    android:id="@+id/switch_landlord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_save_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Save Profile"
+                style="@style/Widget.MaterialComponents.Button"/>
+
+            <Button
+                android:id="@+id/btn_change_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Change Password"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Logout"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:textColor="@color/design_default_color_error"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
