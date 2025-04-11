@@ -70,6 +70,31 @@
                     android:textColor="@color/text_secondary"
                     android:textSize="16sp" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_landlord_contact"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Contact: Not Available"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btn_contact_landlord"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contact"
+                        android:enabled="false"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+                </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -279,6 +304,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_favorite"
-        app:tint="@color/white" />
+        app:layout_anchor="@id/recycler_view_images"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/ic_favorite"
+        app:fabSize="normal" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

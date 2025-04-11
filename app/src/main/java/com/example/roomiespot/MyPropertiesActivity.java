@@ -1,5 +1,6 @@
 package com.example.roomiespot;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -44,7 +45,28 @@ public class MyPropertiesActivity extends AppCompatActivity {
         swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
 
         propertyList = new ArrayList<>();
-        propertyAdapter = new PropertyAdapter(this, propertyList);
+        propertyAdapter = new PropertyAdapter(this, propertyList, new PropertyAdapter.OnPropertyClickListener() {
+            @Override
+            public void onPropertyClick(Property property) {
+                // Open Property Detail Activity
+                Intent intent = new Intent(MyPropertiesActivity.this, PropertyDetailActivity.class);
+                
+                // Pass property details via intent
+                intent.putExtra("PROPERTY_ID", property.getId());
+                intent.putExtra("PROPERTY_TITLE", property.getTitle());
+                intent.putExtra("PROPERTY_DESCRIPTION", property.getDescription());
+                intent.putExtra("PROPERTY_PRICE", property.getPrice());
+                intent.putExtra("PROPERTY_LOCATION", property.getLocation());
+                intent.putExtra("PROPERTY_TYPE", property.getPropertyType());
+                
+                // Pass image URLs if available
+                if (property.getImageUrls() != null && !property.getImageUrls().isEmpty()) {
+                    intent.putStringArrayListExtra("PROPERTY_IMAGES", new ArrayList<>(property.getImageUrls()));
+                }
+
+                startActivity(intent);
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(propertyAdapter);
 

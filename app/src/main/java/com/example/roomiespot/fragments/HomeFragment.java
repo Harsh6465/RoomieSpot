@@ -1,5 +1,6 @@
 package com.example.roomiespot.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.roomiespot.R;
+import com.example.roomiespot.PropertyDetailActivity;
 import com.example.roomiespot.adapters.PropertyAdapter;
 import com.example.roomiespot.models.Property;
 import com.google.android.material.chip.Chip;
@@ -58,7 +60,32 @@ public class HomeFragment extends Fragment {
         
         // Setup RecyclerView
         propertyList = new ArrayList<>();
-        propertyAdapter = new PropertyAdapter(getContext(), propertyList);
+        propertyAdapter = new PropertyAdapter(getContext(), propertyList, new PropertyAdapter.OnPropertyClickListener() {
+            @Override
+            public void onPropertyClick(Property property) {
+                // Open Property Detail Activity
+                Intent intent = new Intent(getActivity(), PropertyDetailActivity.class);
+                
+                // Pass property details via intent
+                intent.putExtra("PROPERTY_ID", property.getId());
+                intent.putExtra("PROPERTY_TITLE", property.getTitle());
+                intent.putExtra("PROPERTY_DESCRIPTION", property.getDescription());
+                intent.putExtra("PROPERTY_PRICE", property.getPrice());
+                intent.putExtra("PROPERTY_LOCATION", property.getLocation());
+                intent.putExtra("PROPERTY_TYPE", property.getPropertyType());
+                
+                // Pass landlord contact details
+                intent.putExtra("LANDLORD_PHONE", property.getLandlordPhoneNumber());
+                intent.putExtra("LANDLORD_EMAIL", property.getLandlordEmail());
+                
+                // Pass image URLs if available
+                if (property.getImageUrls() != null && !property.getImageUrls().isEmpty()) {
+                    intent.putStringArrayListExtra("PROPERTY_IMAGES", new ArrayList<>(property.getImageUrls()));
+                }
+
+                startActivity(intent);
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(propertyAdapter);
         

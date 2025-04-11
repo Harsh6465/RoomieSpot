@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Existing strings -->
     <string name="app_name">RoomieSpot</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -8,4 +9,32 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+
+    <!-- Theme entries -->
+    <string-array name="theme_entries">
+        <item>System Default</item>
+        <item>Light Mode</item>
+        <item>Dark Mode</item>
+    </string-array>
+
+    <string-array name="theme_values">
+        <item>system</item>
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
+
+    <!-- Notification types -->
+    <string-array name="notification_types">
+        <item>Property Updates</item>
+        <item>Messages</item>
+        <item>Favorites</item>
+        <item>Recommendations</item>
+    </string-array>
+
+    <string-array name="notification_types_values">
+        <item>property_updates</item>
+        <item>messages</item>
+        <item>favorites</item>
+        <item>recommendations</item>
+    </string-array>
 </resources>

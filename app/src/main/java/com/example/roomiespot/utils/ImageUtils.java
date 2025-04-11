@@ -17,53 +17,76 @@ public class ImageUtils {
 
     // Get compressed bitmap from Uri
     public static Bitmap getCompressedBitmap(Context context, Uri imageUri, int maxDimension) throws IOException {
+        if (imageUri == null) {
+            throw new IllegalArgumentException("Image URI cannot be null");
+        }
+
         InputStream input = context.getContentResolver().openInputStream(imageUri);
-        
+        if (input == null) {
+            throw new IOException("Unable to open input stream for image");
+        }
+
         // Get original dimensions
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeStream(input, null, options);
         input.close();
-        
-        // Calculate sample size
-        options.inSampleSize = calculateSampleSize(options, maxDimension);
-        
-        // Decode bitmap with sample size
-        options.inJustDecodeBounds = false;
+
+        // Reopen input stream
         input = context.getContentResolver().openInputStream(imageUri);
+        
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, maxDimension, maxDimension);
+        options.inJustDecodeBounds = false;
+
         Bitmap bitmap = BitmapFactory.decodeStream(input, null, options);
         input.close();
+
+        if (bitmap == null) {
+            throw new IOException("Failed to decode bitmap");
+        }
+
+        // Rotate bitmap if needed
+        Bitmap rotatedBitmap = rotateBitmapIfRequired(context, bitmap, imageUri);
         
-        // Fix orientation if needed
-        input = context.getContentResolver().openInputStream(imageUri);
-        bitmap = fixOrientation(bitmap, input);
-        input.close();
-        
-        return bitmap;
+        // Scale down if still too large
+        if (rotatedBitmap.getWidth() > maxDimension || rotatedBitmap.getHeight() > maxDimension) {
+            rotatedBitmap = Bitmap.createScaledBitmap(
+                rotatedBitmap, 
+                Math.min(rotatedBitmap.getWidth(), maxDimension),
+                Math.min(rotatedBitmap.getHeight(), maxDimension), 
+                true
+            );
+        }
+
+        return rotatedBitmap;
     }
-    
-    // Calculate sample size for downsampling
-    private static int calculateSampleSize(BitmapFactory.Options options, int maxDimension) {
-        int height = options.outHeight;
-        int width = options.outWidth;
-        int sampleSize = 1;
-        
-        if (height > maxDimension || width > maxDimension) {
+
+    private static int calculateInSampleSize(
+        BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
             final int halfHeight = height / 2;
             final int halfWidth = width / 2;
-            
-            while ((halfHeight / sampleSize) >= maxDimension || (halfWidth / sampleSize) >= maxDimension) {
-                sampleSize *= 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) >= reqHeight 
+                   && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
             }
         }
-        
-        return sampleSize;
+
+        return inSampleSize;
     }
-    
-    // Fix image orientation based on EXIF data
-    private static Bitmap fixOrientation(Bitmap bitmap, InputStream input) {
+
+    private static Bitmap rotateBitmapIfRequired(Context context, Bitmap bitmap, Uri imageUri) {
         try {
-            ExifInterface exif = new ExifInterface(input);
+            ExifInterface exif = new ExifInterface(imageUri.getPath());
             int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
             
             Matrix matrix = new Matrix();
@@ -86,7 +109,7 @@ public class ImageUtils {
             return bitmap;
         }
     }
-    
+
     // Update the bitmapToByteArray method
     public static byte[] bitmapToByteArray(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();

@@ -18,6 +18,7 @@ public class Property {
     private String location;
     private List<String> imageUrls;
     private String ownerId;
+    private String userId;
     private String description;
     private int bedrooms;
     private int bathrooms;
@@ -25,6 +26,13 @@ public class Property {
     private boolean petsAllowed;
     private boolean furnished;
     private List<String> amenities;
+    private String propertyType;
+    
+    // New fields for landlord contact
+    private String landlordId;
+    private String landlordName;
+    private String landlordPhoneNumber;
+    private String landlordEmail;
 
     // Default constructor for Firebase
     public Property() {}
@@ -78,8 +86,18 @@ public class Property {
         return null;
     }
 
+    public String getUserId() {
+        return userId != null ? userId : ownerId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+        // Ensure ownerId is also set for backward compatibility
+        this.ownerId = userId;
+    }
+
     public String getOwnerId() {
-        return ownerId;
+        return ownerId != null ? ownerId : userId;
     }
 
     public void setOwnerId(String ownerId) {
@@ -144,5 +162,46 @@ public class Property {
 
     public void setAmenities(List<String> amenities) {
         this.amenities = amenities;
+    }
+
+    public String getPropertyType() {
+        return propertyType;
+    }
+
+    public void setPropertyType(String propertyType) {
+        this.propertyType = propertyType;
+    }
+
+    // New getters and setters for landlord contact
+    public String getLandlordId() {
+        return landlordId;
+    }
+
+    public void setLandlordId(String landlordId) {
+        this.landlordId = landlordId;
+    }
+
+    public String getLandlordName() {
+        return landlordName;
+    }
+
+    public void setLandlordName(String landlordName) {
+        this.landlordName = landlordName;
+    }
+
+    public String getLandlordPhoneNumber() {
+        return landlordPhoneNumber;
+    }
+
+    public void setLandlordPhoneNumber(String landlordPhoneNumber) {
+        this.landlordPhoneNumber = landlordPhoneNumber;
+    }
+
+    public String getLandlordEmail() {
+        return landlordEmail;
+    }
+
+    public void setLandlordEmail(String landlordEmail) {
+        this.landlordEmail = landlordEmail;
     }
 }

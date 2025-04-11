@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import androidx.appcompat.app.AppCompatActivity;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashActivity extends AppCompatActivity {
@@ -17,6 +20,13 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         
         mAuth = FirebaseAuth.getInstance();
+
+        // Find logo ImageView
+        ImageView logoImageView = findViewById(R.id.logo_image_view);
+
+        // Load and start animation
+        Animation logoAnimation = AnimationUtils.loadAnimation(this, R.anim.logo_animation);
+        logoImageView.startAnimation(logoAnimation);
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             Intent intent;
