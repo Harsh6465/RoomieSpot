@@ -1,1 +1,20 @@
+# Ignore build output
 /build
+
+# Ignore dependencies (for example, Node.js projects)
+node_modules/
+
+# Ignore environment variable files
+.env
+.env.*
+
+# Ignore log files
+*.log
+
+# Ignore editor/project-specific files
+.vscode/
+.idea/
+.DS_Store
+
+# Ignore OS generated files
+Thumbs.db
