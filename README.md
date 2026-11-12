@@ -5,6 +5,12 @@
   A Smart Android Application for Finding Rooms and Flats Easily.
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-Android-green?style=for-the-badge&logo=android" />
+  <img src="https://img.shields.io/badge/Language-Java-orange?style=for-the-badge&logo=java" />
+  <img src="https://img.shields.io/badge/Database-Firebase-yellow?style=for-the-badge&logo=firebase" />
+  <img src="https://img.shields.io/badge/IDE-Android%20Studio-blue?style=for-the-badge&logo=androidstudio" />
+</p>
 ---
 
 ## 📌 About The Project
